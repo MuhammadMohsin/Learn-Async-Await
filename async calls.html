@@ -40,14 +40,12 @@
                 console.warn("error occured");
                 console.log(err);
             }
-            console.timeEnd();  // log 4000.xx ms
+            console.timeEnd();  // log 2000x ms
         }
 
         /****Suitable for independent calls****/
         async function main_parallel() {
             console.time();
-
-            /*
 
             // *** Throw error if any of api failed *** //
             try {
@@ -64,11 +62,11 @@
                 console.warn("error occured");
                 console.log(err);
             }
-            console.timeEnd();  // log 2000.xx ms
+            console.timeEnd();  // log almost half of above ms
+        }
 
-            */
-
-
+        async function main_parallel_smart() {
+            console.time();
 
             // *** Take care if atleast 1 api got success OR want to check failed apis as well ***
             const promises = [fun1(), fun2()];
@@ -77,15 +75,14 @@
                 console.log(results);
                 results.forEach((result) => console.log(result.status));
             }).finally(() => {
-                console.timeEnd();  // log 2000.xx ms
+                console.timeEnd();  // log almost half of above ms
             });
-
         }
 
         //main_default();
-        main_parallel();
+        //main_parallel();
+        main_parallel_smart();
 
     </script>
 </body>
-
 </html>
